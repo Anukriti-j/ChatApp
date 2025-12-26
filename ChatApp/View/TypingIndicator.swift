@@ -2,7 +2,7 @@ import SwiftUI
 
 struct TypingIndicatorBubble: View {
     @State private var animate = false
-
+    
     var body: some View {
         HStack {
             HStack(spacing: 6) {
@@ -21,7 +21,7 @@ struct TypingIndicatorBubble: View {
             .padding(10)
             .background(Color.gray.opacity(0.3))
             .cornerRadius(16)
-
+            
             Spacer()
         }
         .padding(.horizontal)

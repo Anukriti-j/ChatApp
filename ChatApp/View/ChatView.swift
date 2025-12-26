@@ -75,14 +75,14 @@ private extension ChatView {
 private extension ChatView {
     var inputBar: some View {
         HStack {
-//            TextEditor(text: $inputText)
-//                .scrollContentBackground(.hidden)
-//                .frame(minHeight: 24, maxHeight: 120)
-//                .padding(8)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 12)
-//                        .stroke(Color.gray, lineWidth: 1)
-//                )
+            //            TextEditor(text: $inputText)
+            //                .scrollContentBackground(.hidden)
+            //                .frame(minHeight: 24, maxHeight: 120)
+            //                .padding(8)
+            //                .overlay(
+            //                    RoundedRectangle(cornerRadius: 12)
+            //                        .stroke(Color.gray, lineWidth: 1)
+            //                )
             GrowingTextEditor(text: $inputText)
             
             Button {

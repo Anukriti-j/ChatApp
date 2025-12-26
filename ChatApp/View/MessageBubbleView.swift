@@ -12,8 +12,7 @@ struct MessageBubbleView: View {
                 HStack(alignment: .bottom) {
                     Text(message.text)
                         .multilineTextAlignment(.leading)
-//                        
-//                    Spacer()
+                    
                     Text("\(message.timestamp.chatTime())")
                         .font(.caption2)
                 }
