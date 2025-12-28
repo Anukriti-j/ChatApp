@@ -42,12 +42,20 @@ private extension ChatView {
                     }
                 } else {
                     LazyVStack(spacing: 10) {
-                        ForEach(viewModel.messages) { message in
+                        ForEach(Array(viewModel.messages.enumerated()), id: \.element.id) { index, message in
+
+                            if index == 0 ||
+                                !message.timestamp.isSameDay(as: viewModel.messages[index - 1].timestamp) {
+
+                                DateSeparatorView(date: message.timestamp)
+                            }
+
                             MessageBubbleView(message: message) {
                                 viewModel.retry(message: message)
                             }
                             .id(message.id)
                         }
+
                         
                         if viewModel.isTyping {
                             TypingIndicatorBubble()
@@ -75,14 +83,6 @@ private extension ChatView {
 private extension ChatView {
     var inputBar: some View {
         HStack {
-            //            TextEditor(text: $inputText)
-            //                .scrollContentBackground(.hidden)
-            //                .frame(minHeight: 24, maxHeight: 120)
-            //                .padding(8)
-            //                .overlay(
-            //                    RoundedRectangle(cornerRadius: 12)
-            //                        .stroke(Color.gray, lineWidth: 1)
-            //                )
             GrowingTextEditor(text: $inputText)
             
             Button {
@@ -105,6 +105,18 @@ private extension ChatView {
         DispatchQueue.main.async {
             proxy.scrollTo(lastId, anchor: .bottom)
         }
+    }
+}
+
+struct DateSeparatorView: View {
+    let date: Date
+
+    var body: some View {
+        Text(date.chatDateString())
+            .font(.caption)
+            .foregroundColor(.secondary)
+            .padding(.vertical, 6)
+            .frame(maxWidth: .infinity)
     }
 }
 

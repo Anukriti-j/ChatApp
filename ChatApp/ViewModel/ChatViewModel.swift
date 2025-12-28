@@ -1,14 +1,16 @@
 import Foundation
 import Combine
 
+@MainActor
 final class ChatViewModel: ObservableObject {
     @Published var messages: [Message] = []
     @Published var isTyping = false
     
-    let storage = ChatPersistence()
+    private let storage: ChatStorage
     
     init() {
-        messages = storage.loadMessages()
+        self.storage = ChatPersistence()
+        self.messages = storage.loadMessages()
     }
     
     func sendMessage(text: String) {

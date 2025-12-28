@@ -1,6 +1,12 @@
 import Foundation
 
-final class ChatPersistence {
+protocol ChatStorage {
+    func saveMessages(_ messages: [Message])
+    func loadMessages() -> [Message]
+    func clearMessages()
+}
+
+final class ChatPersistence: ChatStorage {
     
     private let key = "user_chat_messages"
     
